@@ -1,4 +1,4 @@
-import { decorate, observable } from "mobx";
+import { decorate, observable, computed } from "mobx";
 
 class CartStore {
   constructor() {
@@ -23,10 +23,16 @@ class CartStore {
     this.items = [];
     alert("order placed");
   }
+  get countCart() {
+    let totalQuantity = 0;
+    this.items.forEach(item => (totalQuantity += item.quantity));
+    return totalQuantity;
+  }
 }
 
 decorate(CartStore, {
-  items: observable
+  items: observable,
+  countCart: computed
 });
 
 export default new CartStore();

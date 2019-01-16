@@ -3,6 +3,7 @@ import React, { Component } from "react";
 // NativeBase Components
 import { Text, Left, Body, Right, Button, ListItem, Icon } from "native-base";
 import cartStore from "../../store/cartStore";
+import { observer } from "mobx-react";
 
 //Stores
 
@@ -34,4 +35,4 @@ class CartItem extends Component {
   }
 }
 
-export default CartItem;
+export default observer(CartItem);

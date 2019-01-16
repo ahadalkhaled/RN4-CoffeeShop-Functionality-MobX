@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { observer } from "mobx-react";
+import { withNavigation } from "react-navigation";
 
 // NativeBase Components
 import {
@@ -24,6 +25,7 @@ import CoffeeStore from "../../store/coffeeStore";
 import coffeeStore from "../../store/coffeeStore";
 import CartStore from "../../store/cartStore";
 import cartStore from "../../store/cartStore";
+import CartButton from "../cartButton";
 class CoffeeDetail extends Component {
   constructor(props) {
     super(props);
@@ -34,21 +36,7 @@ class CoffeeDetail extends Component {
   }
   static navigationOptions = ({ navigation }) => ({
     title: navigation.getParam("shop", {}).name,
-    headerRight: (
-      <Button
-        light
-        transparent
-        onPress={() => navigation.navigate("CoffeeCart")}
-      >
-        <Text>
-          <Icon
-            type="FontAwesome"
-            name="coffee"
-            style={{ color: "white", fontSize: 15 }}
-          />
-        </Text>
-      </Button>
-    )
+    headerRight: <CartButton />
   });
   changeDrink(value) {
     this.setState({
@@ -127,4 +115,4 @@ class CoffeeDetail extends Component {
   }
 }
 
-export default observer(CoffeeDetail);
+export default withNavigation(observer(CoffeeDetail));
